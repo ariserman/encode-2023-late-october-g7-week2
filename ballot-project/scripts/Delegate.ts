@@ -20,7 +20,7 @@ async function main() {
     let ballotContract: Ballot;
     const ballotFactory = new Ballot__factory(signer);
     ballotContract = ballotFactory.attach(contractAddress);
-    const tx = await ballotContract.giveRightToVote(targetAccount);
+    const tx = await ballotContract.delegate(targetAccount);
     const receipt = await tx.wait();
     console.log(receipt);
 }
