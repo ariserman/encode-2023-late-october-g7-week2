@@ -14,6 +14,14 @@ async function main() {
     const ballotFactory = new Ballot__factory(signer);
     ballotContract = ballotFactory.attach(process.env.CONTRACT_ADDRESS ?? "");
     console.log(`Contract address ${ballotContract.address}`)
+
+    const args = process.argv;
+    const params = args.slice(2);
+    const targetAccount= params[0];
+
+    const tx = await ballotContract.vote(0);
+    const receipt = await tx.wait();
+    console.log(receipt);
 }
 
 main().catch((error) => {
